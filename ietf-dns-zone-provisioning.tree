@@ -1,0 +1,23 @@
+module: ietf-dns-zone-provisioning
+  +--rw tsig-keys
+  |  +--rw tsig-key* [name]
+  |     +--rw name         inet:domain-name
+  |     +--rw algorithm    inet:domain-name
+  |     +--rw secret       string
+  +--rw zones
+     +--rw zone* [name]
+        +--rw name              inet:domain-name
+        +--rw allow-notify* [subnet]
+        |  +--rw subnet      inet:ip-prefix
+        |  +--rw tsig-key?   -> /tsig-keys/tsig-key/name
+        +--rw allow-transfer* [subnet]
+        |  +--rw subnet      inet:ip-prefix
+        |  +--rw tsig-key?   -> /tsig-keys/tsig-key/name
+        +--rw notify-to* [ip]
+        |  +--rw ip          inet:ip-address
+        |  +--rw port?       inet:port-number
+        |  +--rw tsig-key?   -> /tsig-keys/tsig-key/name
+        +--rw transfer-from* [ip]
+           +--rw ip          inet:ip-address
+           +--rw port?       inet:port-number
+           +--rw tsig-key?   -> /tsig-keys/tsig-key/name
