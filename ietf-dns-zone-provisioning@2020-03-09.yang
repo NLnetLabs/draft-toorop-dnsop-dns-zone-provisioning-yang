@@ -83,14 +83,15 @@ module ietf-dns-zone-provisioning {
       type inet:ip-prefix;
       mandatory true;
       description
-        "Contacting IP address must match this prefix.";
+        "Contacting IP address must match this subnet.";
     }
     leaf tsig-key {
       type leafref {
         path "/tsig-keys/tsig-key/name";
       }
       description
-        "Contacting party must use this tsig-key.";
+        "When provided all interactions to and from the
+         contacting remote end must use this tsig-key.";
     }
     description
       "Access control allowing the action from IP addresses from the
@@ -117,7 +118,8 @@ module ietf-dns-zone-provisioning {
         path "/tsig-keys/tsig-key/name";
       }
       description
-        "Data from the contact party must use this tsig-key.";
+        "When provided all interactions with to and from the
+         contacted remote end must use this tsig-key.";
     }
     description
       "IP address of remote party to contact, either to notify about
@@ -135,7 +137,7 @@ module ietf-dns-zone-provisioning {
          and/or addr-key.";
     }
     description
-      "This contains the list of tsig-keys which are referred from
+      "The list of tsig-keys which are referred from
        acl-net-key and addr-key.";
   }
 
