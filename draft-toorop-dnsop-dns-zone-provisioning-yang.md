@@ -15,16 +15,14 @@ stream = "IETF"
 status = "standard"
 
 [[author]]
-initials="W."
-surname="Toorop"
-fullname="Willem Toorop"
-organization = "NLnet Labs"
+initials = "P."
+surname = "Lexis"
+fullname = "Pieter Lexis"
+organization = "PowerDNS"
 [author.address]
- email = "willem@nlnetlabs.nl"
+ email = "pieter.lexis@powerdns.com"
 [author.address.postal]
- street = "Science Park 400"
- city = "Amsterdam"
- code = "1098 XH"
+ city = "Den Haag" 
  country = "Netherlands"
 
 [[author]]
@@ -37,8 +35,19 @@ organization = "Internet Systems Consortium"
 [author.address.postal]
  country = "CZ"
 
+[[author]]
+initials="W."
+surname="Toorop"
+fullname="Willem Toorop"
+organization = "NLnet Labs"
+[author.address]
+ email = "willem@nlnetlabs.nl"
+[author.address.postal]
+ street = "Science Park 400"
+ city = "Amsterdam"
+ code = "1098 XH"
+ country = "Netherlands"
 %%%
-
 
 .# Abstract
 
