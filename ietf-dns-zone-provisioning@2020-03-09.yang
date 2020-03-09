@@ -46,6 +46,22 @@ module ietf-dns-zone-provisioning {
         + " DNS Zone provisioning configuration";
   }
 
+  typedef tsig-algorithm {
+    description "TSIG algorithm names.
+    These are DNS names.";
+    type enumeration {
+      // TODO: let IANA publish this?
+      // https://www.iana.org/assignments/tsig-algorithm-names/tsig-algorithm-names.xhtml
+      enum "gss-tsig.";
+      enum "HMAC-MD5.SIG-ALG.REG.INT.";
+      enum "hmac-sha1";
+      enum "hmac-sha224";
+      enum "hmac-sha256";
+      enum "hmac-sha384";
+      enum "hmac-sha512";
+    }
+  }
+
   /* Groupings */
 
   grouping tsig-key {
@@ -56,7 +72,7 @@ module ietf-dns-zone-provisioning {
         "The name of the key";
     }
     leaf algorithm {
-      type inet:domain-name;
+      type dnszp:tsig-alorithm;
       mandatory true;
       description
         "Name of the algorithm";
