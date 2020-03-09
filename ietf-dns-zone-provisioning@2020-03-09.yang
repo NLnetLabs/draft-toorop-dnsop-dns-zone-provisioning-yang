@@ -43,7 +43,27 @@ module ietf-dns-zone-provisioning {
       "Initial revision.";
     reference
       "RFC XXXX: A YANG Data Model for"
-        + " DNS Zone provisioning configuration";
+      + " DNS Zone provisioning configuration";
+  }
+
+  typedef tsig-algorithm {
+    type enumeration {
+      // TODO: let IANA publish this?
+      // 
+      enum "gss-tsig";
+      enum "HMAC-MD5.SIG-ALG.REG.INT";
+      enum "hmac-sha1";
+      enum "hmac-sha224";
+      enum "hmac-sha256";
+      enum "hmac-sha384";
+      enum "hmac-sha512";
+    }
+    description
+      "TSIG algorithm names.
+       These are DNS names.";
+    reference
+      "https://www.iana.org/assignments"
+      + "/tsig-algorithm-names/tsig-algorithm-names.xhtml";
   }
 
   /* Groupings */
@@ -56,13 +76,13 @@ module ietf-dns-zone-provisioning {
         "The name of the key";
     }
     leaf algorithm {
-      type inet:domain-name;
+      type dnszp:tsig-algorithm;
       mandatory true;
       description
         "Name of the algorithm";
       reference
         "<https://www.iana.org/assignments"
-          + "/tsig-algorithm-names/tsig-algorithm-names.xhtml>";
+        + "/tsig-algorithm-names/tsig-algorithm-names.xhtml>";
     }
     leaf secret {
       type string;
