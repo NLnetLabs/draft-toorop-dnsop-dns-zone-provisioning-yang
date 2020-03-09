@@ -2,7 +2,7 @@ module: ietf-dns-zone-provisioning
   +--rw tsig-keys
   |  +--rw tsig-key* [name]
   |     +--rw name         inet:domain-name
-  |     +--rw algorithm    inet:domain-name
+  |     +--rw algorithm    dnszp:tsig-algorithm
   |     +--rw secret       string
   +--rw zones
      +--rw zone* [name]
