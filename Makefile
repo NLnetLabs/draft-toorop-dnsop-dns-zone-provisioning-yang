@@ -15,7 +15,7 @@ $(DOCNAME).xml: $(DOCNAME).md  $(YANGDOCNAME).tree $(YANGDOCNAME).yang
 	sed 's/@DOCNAME@/$(DOCNAME)-$(VERSION)/g' $< | mmark --xml2 --page > $@
 
 $(YANGDOCNAME).tree: $(YANGDOCNAME)@$(YANGDOCVERSION).yang
-	pyang -f tree $< >$@
+	pyang -f tree --ietf $< >$@
 
 $(YANGDOCNAME).yang: $(YANGDOCNAME)@$(YANGDOCVERSION).yang
 	( echo "<CODE BEGINS> file \"$<\""; cat $<; echo "<CODE ENDS>" ) > $@

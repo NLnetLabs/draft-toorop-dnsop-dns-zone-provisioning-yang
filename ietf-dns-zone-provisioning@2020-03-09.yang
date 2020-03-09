@@ -2,7 +2,8 @@ module ietf-dns-zone-provisioning {
 
   yang-version 1.1;
 
-  namespace "urn:ietf:params:xml:ns:yang:ietf-dns-zone-provisioning";
+  namespace "urn:ietf:params:xml:ns:yang"
+    + ":ietf-dns-zone-provisioning";
 
   prefix dnszp;
 
@@ -41,7 +42,8 @@ module ietf-dns-zone-provisioning {
     description
       "Initial revision.";
     reference
-      "RFC XXXX: A YANG Data Model for DNS Zone provisioning configuration";
+      "RFC XXXX: A YANG Data Model for"
+        + " DNS Zone provisioning configuration";
   }
 
   /* Groupings */
@@ -59,24 +61,27 @@ module ietf-dns-zone-provisioning {
       description
         "Name of the algorithm";
       reference
-        "<https://www.iana.org/assignments/tsig-algorithm-names/tsig-algorithm-names.xhtml>";
+        "<https://www.iana.org/assignments"
+          + "/tsig-algorithm-names/tsig-algorithm-names.xhtml>";
     }
     leaf secret {
       type string;
       mandatory true;
       description
-        "Shared secret in base64 format. Possible lengths are dependend
-         on the algorithm";
+        "Shared secret in base64 format. Possible lengths are
+         dependent on the algorithm";
     }
     description
       "Shared key used for authenticating transactions with
        authoritative name servers";
     reference
-      "RFC2845: Secret Key Transaction Authentication for DNS (TSIG)";
+      "RFC2845: Secret Key Transaction Authentication for DNS
+       (TSIG)";
   }
   grouping acl-net-key {
     leaf subnet {
       type inet:ip-prefix;
+      mandatory true;
       description
         "Contacting IP address must match this prefix.";
     }
@@ -97,23 +102,41 @@ module ietf-dns-zone-provisioning {
   grouping addr-key {
     leaf ip {
       type inet:ip-address;
+      mandatory true;
+      description
+        "IP address to contact.";
     }
     leaf port {
       type inet:port-number;
       default 53;
+      description
+        "Port to conact.";
     }
     leaf tsig-key {
       type leafref {
         path "/tsig-keys/tsig-key/name";
       }
+      description
+        "Data from the contact party must use this tsig-key.";
     }
+    description
+      "IP address of remote party to contact, either to notify about
+       updates in the zone, or to fetch the zone from. An optional
+       tsig-key can be given to validate the transfer or to sign the
+       notify.";
   }
 
   container tsig-keys {
     list tsig-key {
       key "name";
       uses tsig-key;
+      description
+        "The tsig-key which is referred to from acl-net-key
+         and/or addr-key.";
     }
+    description
+      "This contains the list of tsig-keys which are referred from
+       acl-net-key and addr-key.";
   }
 
   container zones {
@@ -121,23 +144,50 @@ module ietf-dns-zone-provisioning {
       key "name";
       leaf name {
         type inet:domain-name;
+        description
+          "The name of the DNS Zone";
       }
       list allow-notify {
         key "subnet";
         uses acl-net-key;
+        description
+          "Secondary servers allow notifies for DNS Zone updates
+           from IP addresses from this subnet. If a tsig-key is
+           given, the notify must be signed with that key.";
       }
       list allow-transfer {
         key "subnet";
         uses acl-net-key;
+        description
+          "Primary servers allow transfers to the IP addresses
+           to the given subnet. If a tsig-key is given, the transfer
+           request must be signed and the DNS messages used for the
+           transfer will also be signed with that tsig-key";
       }
       list notify-to {
         key "ip";
         uses "addr-key";
+        description
+          "Primary servers send NOTIFY messages when the Zonne
+           has been updated to this IP. If a tsig-key is given,
+           it will be signed with that key.";
       }
       list transfer-from {
         key "ip";
         uses "addr-key";
+        description
+          "Secondary servers contact the given ip-address to
+           acquire DNS Zone content. When a tsig-key is given
+           the request will be signed with it, and the DNS
+           messages conveying the Zone must be signed with
+           that tsig-key.";
       }
+      description
+        "A DNS Zone with properties which describe the provisioning
+         relationships within for authoritative nameserver.";
     }
+    description
+      "The list of DNS Zones for which the properties are defined
+       that describe the primary/secondary relationships.";
   }
 }

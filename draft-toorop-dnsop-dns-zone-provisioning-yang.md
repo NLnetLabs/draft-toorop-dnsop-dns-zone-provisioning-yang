@@ -26,6 +26,16 @@ organization = "PowerDNS"
  country = "Netherlands"
 
 [[author]]
+initials = "P."
+surname = "Spacek"
+fullname = "Petr Spacek"
+organization = "CZ.NIC"
+[author.address]
+ email = "petr.spacek@nic.cz"
+[author.address.postal]
+ country = "CZ"
+
+[[author]]
 initials = "O."
 surname = "Sury"
 fullname = "Ondrej Sury"
