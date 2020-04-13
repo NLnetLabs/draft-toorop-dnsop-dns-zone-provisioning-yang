@@ -13,11 +13,11 @@ module: ietf-dns-zone-provisioning
         +--rw allow-transfer* [subnet]
         |  +--rw subnet      inet:ip-prefix
         |  +--rw tsig-key?   -> /tsig-keys/tsig-key/name
-        +--rw notify-to* [ip]
+        +--rw notify-to* [ip port]
         |  +--rw ip          inet:ip-address
-        |  +--rw port?       inet:port-number
+        |  +--rw port        inet:port-number
         |  +--rw tsig-key?   -> /tsig-keys/tsig-key/name
-        +--rw transfer-from* [ip]
+        +--rw transfer-from* [ip port]
            +--rw ip          inet:ip-address
-           +--rw port?       inet:port-number
+           +--rw port        inet:port-number
            +--rw tsig-key?   -> /tsig-keys/tsig-key/name
