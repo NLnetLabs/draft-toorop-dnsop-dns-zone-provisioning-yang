@@ -1,4 +1,4 @@
-VERSION = 00
+VERSION = 01
 DOCNAME = draft-toorop-dnsop-dns-zone-provisioning-yang
 YANGDOCVERSION = 2020-03-09
 YANGDOCNAME = ietf-dns-zone-provisioning

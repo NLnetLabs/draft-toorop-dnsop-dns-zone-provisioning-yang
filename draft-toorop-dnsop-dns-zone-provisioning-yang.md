@@ -6,7 +6,7 @@ category = "std"
 ipr = "trust200902"
 area = "Internet"
 workgroup = "DNSOP Working Group"
-date = 2020-03-09T00:00:00Z
+date = 2020-04-13T00:00:00Z
 
 [seriesInfo]
 name = "Internet-Draft"
@@ -24,6 +24,16 @@ organization = "PowerDNS"
 [author.address.postal]
  city = "Den Haag" 
  country = "Netherlands"
+
+[[author]]
+initials = "L."
+surname = "Lhotka"
+fullname = "Ladislav Lhotka"
+organization = "CZ.NIC"
+[author.address]
+ email = "lhotka@nic.cz"
+[author.address.postal]
+ country = "CZ"
 
 [[author]]
 initials = "P."
